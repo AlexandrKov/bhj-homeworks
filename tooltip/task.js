@@ -2,7 +2,10 @@ const hasTooltips = document.querySelectorAll(".has-tooltip");
 
 
 hasTooltips.forEach((elem) => {
-      elem.insertAdjacentHTML("afterend", `<div class="tooltip" style="left: 0; top: 0">
+      console.log(elem.getBoundingClientRect())
+      let {left, top} = elem.getBoundingClientRect();
+      console.log(left)
+      elem.insertAdjacentHTML("afterend", `<div class="tooltip" style="left: ${left}px; top: ${top + 20}px">
       </div>`)
       elem.addEventListener("click", (event) => {
         event.preventDefault()

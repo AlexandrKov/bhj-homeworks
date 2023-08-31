@@ -4,22 +4,23 @@ const input = document.querySelector(".tasks__input");
 
 form.addEventListener("submit", (e) => {
     e.preventDefault()
-    list.insertAdjacentHTML("beforeend", `<div class="task">
-    <div class="task__title">
-      ${input.value}
-    </div>
-    <a href="#" class="task__remove">&times;</a>
-  </div>`)
-    form.reset();
-    deleteDiv();
+    if(input.value.trim() !== "") {
+      list.insertAdjacentHTML("beforeend", `<div class="task">
+      <div class="task__title">
+        ${input.value}
+      </div>
+      <a href="#" class="task__remove" onclick="deleteDiv(event)">&times;</a>
+    </div>`)
+      form.reset();
+    } else {
+      alert("Добавьте задачу!")
+    }
+
 })
 
-function deleteDiv() {
-    const tasks = document.querySelectorAll(".task");
-    tasks.forEach((elem) => {
-    elem.addEventListener("click", (event) => {
+function deleteDiv(event) {
+
         let div = event.target.closest(".task");
         div.remove();
-    })
-})
+
 }
